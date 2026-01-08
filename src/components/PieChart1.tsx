@@ -5,11 +5,11 @@ const draw: Variants = {
   visible: (i: number) => {
     const delay = i * 0.5;
     return {
-      pathLength: 7 / 10,
+      pathLength: 0.75,
       opacity: 1,
       transition: {
-        pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 },
+        pathLength: { delay, type: "spring", duration: 1, bounce: 0 },
+        opacity: { delay, duration: 0.1 },
       },
     };
   },
@@ -18,13 +18,12 @@ const draw: Variants = {
 export const PieChart = () => {
   return (
     <motion.svg
-      width="600"
-      height="300"
+      width="200"
+      height="200"
       viewBox="0 0 width height"
       style={{
-        maxWidth: "80vw",
-        transformOrigin: "center",
         transform: "rotate(-90deg)",
+        maxWidth: "80vw",
       }}
       /**motionの記述 */
       animate="visible"
@@ -44,9 +43,9 @@ export const PieChart = () => {
         variants={draw}
         custom={2}
       />
-      <div>
-        <p className="text-red-600">100</p>
-      </div>
+      <text x="85" y="-95" style={{ transform: "rotate(90deg)" }}>
+        75%
+      </text>
 
       {/* More shapes would go here */}
     </motion.svg>
