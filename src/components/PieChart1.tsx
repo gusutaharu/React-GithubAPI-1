@@ -1,4 +1,11 @@
-import { motion, Variants } from "motion/react";
+import {
+  motion,
+  Variants,
+  animate,
+  useMotionValue,
+  useTransform,
+} from "motion/react";
+import { useEffect } from "react";
 
 const draw: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -8,7 +15,7 @@ const draw: Variants = {
       pathLength: 0.75,
       opacity: 1,
       transition: {
-        pathLength: { delay, type: "spring", duration: 1, bounce: 0 },
+        pathLength: { delay, type: "spring", duration: 5, bounce: 0 },
         opacity: { delay, duration: 0.1 },
       },
     };
@@ -16,19 +23,35 @@ const draw: Variants = {
 };
 
 export const PieChart = () => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(() => Math.round(count.get()));
+
+  useEffect(() => {
+    const controls = animate(count, 75, { duration: 3, delay: 0.5 });
+    return () => controls.stop();
+  }, []);
+
   return (
     <motion.svg
       width="200"
       height="200"
       viewBox="0 0 width height"
-      style={{
-        transform: "rotate(-90deg)",
-        maxWidth: "80vw",
-      }}
+      className="-rotate-90 max-w-[80vw]"
       /**motionの記述 */
       animate="visible"
       initial="hidden"
     >
+      <circle
+        cx="100"
+        cy="100"
+        r="80"
+        stroke="#FFF"
+        style={{
+          strokeWidth: 20,
+          strokeLinecap: "round",
+          fill: "none",
+        }}
+      />
       <motion.circle
         cx="100"
         cy="100"
@@ -36,16 +59,17 @@ export const PieChart = () => {
         stroke="#FF0055"
         style={{
           strokeWidth: 20,
-          strokeLinecap: "round",
+          strokeLinecap: "square",
           fill: "none",
         }}
         /**motionの記述 */
         variants={draw}
-        custom={2}
+        custom={1}
       />
-      <text x="85" y="-95" style={{ transform: "rotate(90deg)" }}>
-        75%
-      </text>
+
+      <motion.text x="85" y="-95" fill="red" className="rotate-90">
+        {rounded}
+      </motion.text>
 
       {/* More shapes would go here */}
     </motion.svg>
