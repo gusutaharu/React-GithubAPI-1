@@ -33,9 +33,9 @@ export const PieChart = () => {
 
   return (
     <motion.svg
-      width="200"
+      width="300"
       height="200"
-      viewBox="0 0 width height"
+      viewBox="0 0 300 200"
       className="-rotate-90 max-w-[80vw]"
       /**motionの記述 */
       animate="visible"
@@ -48,7 +48,7 @@ export const PieChart = () => {
         stroke="#FFF"
         style={{
           strokeWidth: 20,
-          strokeLinecap: "round",
+          strokeLinecap: "square",
           fill: "none",
         }}
       />
@@ -58,7 +58,7 @@ export const PieChart = () => {
         r="80"
         stroke="#FF0055"
         style={{
-          strokeWidth: 20,
+          strokeWidth: 22,
           strokeLinecap: "square",
           fill: "none",
         }}
