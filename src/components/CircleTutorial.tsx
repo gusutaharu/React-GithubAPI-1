@@ -19,8 +19,8 @@ export const CircleTutorial = () => {
   return (
     <motion.svg
       width="600"
-      height="250"
-      viewBox="0 0 width height"
+      height="300"
+      viewBox="0 0 600 300"
       style={{ maxWidth: "80vw" }}
       /**motionの記述 */
       animate="visible"
