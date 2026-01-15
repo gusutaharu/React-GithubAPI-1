@@ -1,6 +1,7 @@
 import { CircleTutorial } from "./components/CircleTutorial";
 import { GitHubAPI } from "./components/GitHubAPI";
 import { PieChart } from "./components/PieChart1";
+import { GitLangPie } from "./components/GitLangPie";
 
 export const App = () => {
   return (
@@ -10,6 +11,7 @@ export const App = () => {
         <PieChart />
       </div>
       <GitHubAPI />
+      <GitLangPie />
     </main>
   );
 };
